@@ -1,0 +1,5 @@
+timestamp,name,email,whatsapp,location,category,tier
+2026-02-05 00:49:40,FirstAfterReset,first@test.com,8765551111,Kingston,Owner,Platinum
+2026-02-05 05:13:29,IndependenceTest,indep@test.com,8765552222,Kingston,Owner,Gold
+2026-02-05 05:45:15,FinalPreHandover,final@nestystay.net,8765557777,Westmoreland,Owner,Gold
+2026-02-05 17:58:44,Test,test@test.com,8765551234,Kingston,Owner,Platinum
