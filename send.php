@@ -2,6 +2,11 @@
 header('Content-Type: application/json');
 
 /* =========================
+   LOAD ENV CONFIGURATION
+========================= */
+require_once __DIR__ . '/config.php';
+
+/* =========================
    BASIC SECURITY & METHOD
 ========================= */
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -96,32 +101,27 @@ if ($tier === "Gold" && $tracker['gold_filled'] >= $tracker['gold_total']) {
 }
 
 /* =========================
-   SEND EMAIL
+   SEND EMAIL VIA BREVO SMTP
 ========================= */
-$ADMIN_EMAIL = "aeronaughtycal09@gmail.com"; // 🔴 CHANGE THIS
+require_once __DIR__ . '/smtp-sender.php';
 
 $subject = "New $tier Founder Registration";
 
-$message = "
-NEW FOUNDER REGISTRATION
+$message = "NEW FOUNDER REGISTRATION\n\n" .
+           "Name: $name\n" .
+           "Email: $email\n" .
+           "WhatsApp: $whatsapp\n" .
+           "Location: $location\n" .
+           "Category: $category\n" .
+           "Tier: $tier";
 
-Name: $name
-Email: $email
-WhatsApp: $whatsapp
-Location: $location
-Category: $category
-Tier: $tier
-";
+$emailResult = sendEmailViaSMTP($toName = "New Founder", $subject, $message);
 
-$headers  = "From: Nesty Stay <no-reply@nestystay.net>\r\n";
-$headers .= "Reply-To: $email\r\n";
-
-$mailSent = mail($ADMIN_EMAIL, $subject, $message, $headers);
-
-if (!$mailSent) {
+if (!$emailResult['success']) {
     echo json_encode([
         "status" => "error",
-        "message" => "Unable to send email at this time."
+        "message" => "Unable to send email. Please try again later.",
+        "debug" => $emailResult['error'] ?? 'Unknown error'
     ]);
     exit;
 }
