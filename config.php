@@ -21,7 +21,7 @@ foreach ($lines as $line) {
 }
 
 // Validate required constants
-$required = ['BREVO_SMTP_HOST', 'BREVO_SMTP_PORT', 'BREVO_SMTP_USERNAME', 'BREVO_SMTP_PASSWORD', 'FROM_MAIL', 'FROM_NAME', 'TO_MAIL'];
+$required = ['BREVO_API_KEY', 'FROM_MAIL', 'FROM_NAME', 'TO_MAIL'];
 foreach ($required as $const) {
     if (!defined($const)) {
         die("Error: Missing configuration $const in .env file");

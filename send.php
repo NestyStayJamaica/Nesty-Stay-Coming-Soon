@@ -101,9 +101,9 @@ if ($tier === "Gold" && $tracker['gold_filled'] >= $tracker['gold_total']) {
 }
 
 /* =========================
-   SEND EMAIL VIA BREVO SMTP
+   SEND EMAIL VIA BREVO API
 ========================= */
-require_once __DIR__ . '/smtp-sender.php';
+require_once __DIR__ . '/mail-sender.php';
 
 $subject = "New $tier Founder Registration";
 
@@ -115,7 +115,7 @@ $message = "NEW FOUNDER REGISTRATION\n\n" .
            "Category: $category\n" .
            "Tier: $tier";
 
-$emailResult = sendEmailViaSMTP($toName = "New Founder", $subject, $message);
+$emailResult = sendEmailViaBrevoApi("New Founder Registration", $subject, $message);
 
 if (!$emailResult['success']) {
     echo json_encode([
