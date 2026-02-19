@@ -2,3 +2,7 @@
 .env.local
 *.log
 node_modules/
+.env
+config.php
+*.env*
+secure/
