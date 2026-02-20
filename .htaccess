@@ -1,0 +1,7 @@
+<FilesMatch "\.(env|config\.php|ini|log)$">
+  Order allow,deny
+  Deny from all
+</FilesMatch>
+
+# Block access to hidden files
+RedirectMatch 404 /\..*$

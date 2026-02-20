@@ -4,7 +4,7 @@ header('Content-Type: application/json');
 /* =========================
    LOAD ENV CONFIGURATION
 ========================= */
-require_once __DIR__ . '/config.php';
+require_once '/var/www/secure/.env.php';
 
 /* =========================
    BASIC SECURITY & METHOD
@@ -144,5 +144,6 @@ file_put_contents($trackerFile, json_encode($tracker, JSON_PRETTY_PRINT));
 ========================= */
 echo json_encode([
     "status" => "success",
-    "message" => "Thank you! Your $tier founding membership has been successfully registered."
-]);
+    "message" => "Thank you, $name! Your $tier founding membership has been successfully registered."
+]);;
+

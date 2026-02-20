@@ -4,7 +4,7 @@
  */
 
 function sendEmailViaBrevoApi($toName, $subject, $message) {
-    require_once __DIR__ . '/config.php';
+    require_once '/var/www/secure/.env.php';
     
     $from = FROM_MAIL;
     $fromName = FROM_NAME;
